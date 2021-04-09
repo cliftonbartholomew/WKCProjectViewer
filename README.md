@@ -4,7 +4,7 @@
 * [Creating an exe](#creating-an-exe)
 
 ## General info
-This project is simple Lorem ipsum dolor generator.
+This project is a utility program meant to be shipped in the root directory of a complex project report structure. The program allows the end user to plug in the USB/HDD with the report folder structure, double click the .exe and be presented with the folder structure. The folder structure can be easily expanded and collapsed. When clicking on a file or folder, it is opened in windows explorer.
 	
 ## Technologies
 Project is created with:
