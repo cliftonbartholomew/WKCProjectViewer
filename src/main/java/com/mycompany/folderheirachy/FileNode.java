@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//test comment
 package com.mycompany.folderheirachy;
 
 import java.awt.Desktop;
@@ -19,19 +20,19 @@ public class FileNode {
 
 	private File f;
 
-	public FileNode(File f){
+	public FileNode(File f) {
 		this.f = f;
 	}
 
-	public File getFile(){
+	public File getFile() {
 		return f;
 	}
 
-	public String toString(){
+	public String toString() {
 		return f.getName();
 	}
 
-	public void openDirectory(){
+	public void openDirectory() {
 
 		Desktop d = Desktop.getDesktop();
 		try {
@@ -42,4 +43,3 @@ public class FileNode {
 	}
 
 }
-
