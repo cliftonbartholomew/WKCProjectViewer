@@ -5,49 +5,41 @@
  */
 package com.mycompany.folderheirachy;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.io.File;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTree;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.TreeExpansionEvent;
-import javax.swing.event.TreeExpansionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.plaf.basic.BasicTreeUI;
-import javax.swing.plaf.metal.MetalTreeUI;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
+//test comment 2
 
 /**
  *
  * @author Cliftonb
  */
 public class FileTreePanel extends JPanel {
-	
+
 	private JTree tree;
+
 	public FileTreePanel() {
 	}
 
-	public void init(File f){
+	public void init(File f) {
 		FileNode root = new FileNode(f);
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode(root);
 		createNodes(top);
 
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		
+
 		tree = new JTree(top);
 		//hide the root node to only display the contents.
 		//tree.setRootVisible(false);
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
-				DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				FileNode nodeInfo = (FileNode) node.getUserObject();
 				nodeInfo.openDirectory();
 
@@ -61,8 +53,8 @@ public class FileTreePanel extends JPanel {
 
 	private void createNodes(DefaultMutableTreeNode top) {
 		FileNode current = (FileNode) top.getUserObject();
-		if(current.getFile().isDirectory()){
-			for(File f: current.getFile().listFiles()){
+		if (current.getFile().isDirectory()) {
+			for (File f : current.getFile().listFiles()) {
 				FileNode fn = new FileNode(f);
 				DefaultMutableTreeNode dmtn = new DefaultMutableTreeNode(fn);
 				top.add(dmtn);
@@ -71,27 +63,25 @@ public class FileTreePanel extends JPanel {
 		}
 	}
 
-	public void expandTree (){
-		for(int i = 0; i < tree.getRowCount(); i ++){
+	public void expandTree() {
+		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.expandRow(i);
 		}
 	}
-	
-	public void collapseTree(){
+
+	public void collapseTree() {
 		int count = tree.getRowCount();
-		for(int i = count; i > 0; i --){
+		for (int i = count; i > 0; i--) {
 			tree.collapseRow(i);
 		}
 	}
 
-	public void expandFirstChildren(){
+	public void expandFirstChildren() {
 		int count = tree.getRowCount();
-		for(int i = count; i >= 0; i --){
+		for (int i = count; i >= 0; i--) {
 			tree.expandRow(i);
 		}
 
 	}
-	
-
 
 }
